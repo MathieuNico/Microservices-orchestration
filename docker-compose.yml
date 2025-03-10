@@ -9,6 +9,8 @@ services:
       MYSQL_DATABASE: dockereval
     volumes:
       - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
 
   auth-app:
     build: ./Auth-app
@@ -16,6 +18,8 @@ services:
       - ./env/${ENV}.env
     depends_on:
       - db
+    ports:
+      - 3000:3000
 
   api-app:
     build: ./Api-app
@@ -24,6 +28,8 @@ services:
     depends_on:
       - db
       - auth-app
+    ports:
+      - 5000:5000
 
 volumes:
   db_data:

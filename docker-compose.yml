@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   auth-app:
-    build: ./auth-app
+    build: ./Auth-app
     env_file:
       - ./env/${ENV}.env
     depends_on:
       - db
 
   api-app:
-    build: ./api-app
+    build: ./Api-app
     env_file:
       - ./env/${ENV}.env
     depends_on:

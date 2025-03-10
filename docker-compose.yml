@@ -1,6 +1,15 @@
-version: '3.8'
-
 services:
+  db:
+    image: mysql:latest
+    restart: always
+    env_file:
+      - ./env/${ENV}.env
+    environment:
+      MYSQL_ROOT_PASSWORD: rOOtPassword
+      MYSQL_DATABASE: dockereval
+    volumes:
+      - db_data:/var/lib/mysql
+
   auth-app:
     build: ./Auth-app
     env_file:
@@ -15,15 +24,6 @@ services:
     depends_on:
       - db
       - auth-app
-
-  db:
-    image: mysql:latest
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
-    volumes:
-      - db_data:/var/lib/mysql
 
 volumes:
   db_data:

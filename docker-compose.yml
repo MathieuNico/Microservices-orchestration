@@ -2,13 +2,28 @@ version: '3.8'
 
 services:
   auth-app:
-    ...
+    build: ./auth-app
+    env_file:
+      - ./env/${ENV}.env
+    depends_on:
+      - db
 
   api-app:
-    ...
+    build: ./api-app
+    env_file:
+      - ./env/${ENV}.env
+    depends_on:
+      - db
+      - auth-app
 
   db:
-    ...
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db_data:/var/lib/mysql
 
 volumes:
-  ...
+  db_data:

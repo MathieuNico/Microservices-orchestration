@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  auth-app:
+    ...
+
+  api-app:
+    ...
+
+  db:
+    ...
+
+volumes:
+  ...
